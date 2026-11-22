@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+set -eu
+# Checks syntax, unit tests and code quality. Run after 'go mod tidy'.
+gofmt -l ./cmd ./internal | grep . && { echo 'Run gofmt -w on listed Go files'; exit 1; } || true
+go test ./...
+go vet ./...
